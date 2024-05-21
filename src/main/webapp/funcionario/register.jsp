@@ -5,7 +5,7 @@
 
         <head>
             <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-            <title>Registration Page</title>
+            <title>Cadastrar Funcionario</title>
             <s:head />
             <style type="text/css">
                 @import url(style.css);
@@ -15,11 +15,13 @@
         <body>
             <s:form action="saveOrUpdateFuncionario">
                 <s:push value="funcionario">
+                	<s:hidden name="id" />
                     <s:textfield name="nome" label="Nome Funcionario " />
-                    <s:submit name="Salvar" label="Gravar"/>
+                    <s:submit value="Gravar"/>
                 </s:push>
             </s:form>
-
+		<hr>
+		<br>
             <s:if test="funcionarioList.size() > 0">
                 <div class="content">
                     <table class="funcionarioTable" cellpadding="5px">
@@ -30,7 +32,7 @@
                             <th>Deletar</th>
                         </tr>
                         <s:iterator value="funcionarioList" status="funcionarioStatus">
-                            <tr class="<s:if test=" #funcionarioStatus.odd==true ">odd</s:if><s:else>even</s:else>">
+                            <tr class="odd">
                                 <td>
                                     <s:property value="id" />
                                 </td>
@@ -41,14 +43,14 @@
                                     <s:url id="editURL" action="editFuncionario">
                                         <s:param name="id" value="%{id}"></s:param>
                                     </s:url>
-                                    <s:a href="%{editURL}">Edit</s:a>
+                                    <s:a href="%{editURL}">Editar</s:a>
                                 </td>
 
                                 <td>
                                     <s:url id="deleteURL" action="deleteFuncionario">
                                         <s:param name="id" value="%{id}"></s:param>
                                     </s:url>
-                                    <s:a href="%{deleteURL}">Delete</s:a>
+                                    <s:a href="%{deleteURL}">Deletar</s:a>
                                 </td>
                             </tr>
                         </s:iterator>
