@@ -1,0 +1,20 @@
+<!DOCTYPE struts PUBLIC
+"-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
+"http://struts.apache.org/dtds/struts-2.0.dtd">
+
+<struts>
+	<package name="default" extends="hibernate-default">
+		<action name="saveOrUpdateFuncionario" method="saveOrUpdate" class="br.com.web.FuncionarioAction">
+			<result name="success" type="redirect">listFuncionario</result>
+		</action>
+		<action name="listFuncionario" method="list" class="br.com.web.FuncionarioAction">
+			<result name="success">/funcionario/register.jsp</result>
+		</action>
+		<action name="editFuncionario" method="edit" class="br.com.web.FuncionarioAction">
+			<result name="success">/funcionario/register.jsp</result>
+		</action>
+		<action name="deleteFuncionario" method="delete" class="br.com.web.FuncionarioAction">
+			<result name="success" type="redirect">listFuncionario</result>
+		</action>
+	</package>
+</struts>
