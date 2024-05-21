@@ -1,4 +1,4 @@
-package br.com.action;
+package br.com.soc.action;
 
 import java.sql.SQLException;
 import java.util.ArrayList;
@@ -12,9 +12,9 @@ import com.opensymphony.xwork2.ActionContext;
 import com.opensymphony.xwork2.ActionSupport;
 import com.opensymphony.xwork2.ModelDriven;
 
-import br.com.dao.FuncionarioService;
-import br.com.dao.FuncionarioServiceImpl;
-import br.com.domain.Funcionario;
+import br.com.soc.domain.Funcionario;
+import br.com.soc.service.FuncionarioService;
+import br.com.soc.service.impl.FuncionarioServiceImpl;
 
 public class FuncionarioAction extends ActionSupport implements ModelDriven<Funcionario> {
 

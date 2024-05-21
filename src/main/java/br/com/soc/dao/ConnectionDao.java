@@ -1,4 +1,4 @@
-package br.com.dao;
+package br.com.soc.dao;
 
 import java.sql.Connection;
 import java.sql.DriverManager;

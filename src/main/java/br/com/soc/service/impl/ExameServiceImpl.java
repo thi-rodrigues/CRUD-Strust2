@@ -1,4 +1,4 @@
-package br.com.dao;
+package br.com.soc.service.impl;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -13,9 +13,11 @@ import org.hibernate.Transaction;
 import com.googlecode.s2hibernate.struts2.plugin.annotations.SessionTarget;
 import com.googlecode.s2hibernate.struts2.plugin.annotations.TransactionTarget;
 
-import br.com.domain.Funcionario;
+import br.com.soc.dao.ConnectionDao;
+import br.com.soc.domain.Exame;
+import br.com.soc.service.ExameService;
 
-public class FuncionarioServiceImpl implements FuncionarioService {
+public class ExameServiceImpl implements ExameService {
 
 	@SessionTarget
 	Session session;
@@ -27,44 +29,44 @@ public class FuncionarioServiceImpl implements FuncionarioService {
 		return ConnectionDao.getConnection();
 	}
 
-	public List<Funcionario> listFuncionario() throws SQLException, Exception {
+	public List<Exame> listExame() throws SQLException, Exception {
 		getConnection().setAutoCommit(false);
-		List<Funcionario> funcionarios = new LinkedList<>();
+		List<Exame> exames = new LinkedList<>();
 		try {
-			String sql = "SELECT * FROM FUNCIONARIO ";
+			String sql = "SELECT * FROM EXAME ";
 			PreparedStatement ps = getConnection().prepareStatement(sql);
 			ResultSet rs = ps.executeQuery();
 
 			if (rs != null) {
 				while (rs.next()) {
-					Funcionario bean = new Funcionario();
-					bean.setId(rs.getLong("CD_FUNCIONARIO"));
-					bean.setNome(rs.getString("NM_FUNCIONARIO"));
-					funcionarios.add(bean);
+					Exame bean = new Exame();
+					bean.setId(rs.getLong("CD_EXAME"));
+					bean.setNome(rs.getString("NM_EXAME"));
+					exames.add(bean);
 				}
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		return funcionarios;
+		return exames;
 	}
 
 	@Override
-	public Funcionario listFuncionarioById(Long codFuncionario) throws SQLException, Exception {
+	public Exame listExameById(Long codExame) throws SQLException, Exception {
 		getConnection().setAutoCommit(false);
-		Funcionario funcionario = new Funcionario();
+		Exame exame = new Exame();
 		try {
-			StringBuilder sql = new StringBuilder("SELECT * FROM FUNCIONARIO WHERE 1=1 ");
-			if (codFuncionario != null)
-				sql.append(" AND CD_FUNCIONARIO = " + codFuncionario);
+			StringBuilder sql = new StringBuilder("SELECT * FROM EXAME WHERE 1=1 ");
+			if (codExame != null)
+				sql.append(" AND CD_EXAME = " + codExame);
 
 			PreparedStatement ps = getConnection().prepareStatement(sql.toString());
 			ResultSet rs = ps.executeQuery();
 
 			if (rs != null) {
 				while (rs.next()) {
-					funcionario.setId(rs.getLong("CD_FUNCIONARIO"));
-					funcionario.setNome(rs.getString("NM_FUNCIONARIO"));
+					exame.setId(rs.getLong("CD_EXAME"));
+					exame.setNome(rs.getString("NM_EXAME"));
 				}
 			}
 
@@ -75,17 +77,17 @@ public class FuncionarioServiceImpl implements FuncionarioService {
 				getConnection().close();
 			}
 		}
-		return funcionario;
+		return exame;
 	}
 
 	@Override
-	public void saveFuncionario(Funcionario funcionario) throws SQLException, Exception {
+	public void saveExame(Exame exame) throws SQLException, Exception {
 		getConnection().setAutoCommit(false);
 		try {
-			String sql = "INSERT INTO FUNCIONARIO VALUES (?,?)";
+			String sql = "INSERT INTO EXAME VALUES (?,?)";
 			PreparedStatement ps = getConnection().prepareStatement(sql);
 			ps.setString(1, null);
-			ps.setString(2, funcionario.getNome());
+			ps.setString(2, exame.getNome());
 			ps.executeUpdate();
 		} catch (Exception e) {
 			transaction.rollback();
@@ -98,12 +100,12 @@ public class FuncionarioServiceImpl implements FuncionarioService {
 	}
 
 	@Override
-	public void deleteFuncionario(Long funcionarioId) throws SQLException, Exception {
+	public void deleteExame(Long exameId) throws SQLException, Exception {
 		getConnection().setAutoCommit(false);
 		try {
-			String sql = "DELETE FROM FUNCIONARIO WHERE CD_FUNCIONARIO=?";
+			String sql = "DELETE FROM EXAME WHERE CD_EXAME=?";
 			PreparedStatement ps = getConnection().prepareStatement(sql);
-			ps.setLong(1, funcionarioId);
+			ps.setLong(1, exameId);
 			ps.executeUpdate();
 		} catch (Exception e) {
 			transaction.rollback();
@@ -112,13 +114,13 @@ public class FuncionarioServiceImpl implements FuncionarioService {
 	}
 
 	@Override
-	public void updateFuncionario(Funcionario funcionario) throws SQLException, Exception {
+	public void updateExame(Exame exame) throws SQLException, Exception {
 		getConnection().setAutoCommit(false);
 		try {
-			String sql = "UPDATE FUNCIONARIO SET NM_FUNCIONARIO=? WHERE CD_FUNCIONARIO=? ";
+			String sql = "UPDATE EXAME SET NM_EXAME=? WHERE CD_EXAME=? ";
 			PreparedStatement ps = getConnection().prepareStatement(sql);
-			ps.setString(1, funcionario.getNome());
-			ps.setLong(2, funcionario.getId());
+			ps.setString(1, exame.getNome());
+			ps.setLong(2, exame.getId());
 			ps.executeUpdate();
 		} catch (Exception e) {
 			e.printStackTrace();

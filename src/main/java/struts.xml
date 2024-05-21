@@ -4,16 +4,16 @@
 
 <struts>
 	<package name="default" extends="hibernate-default">
-		<action name="saveOrUpdateFuncionario" method="saveOrUpdate" class="br.com.action.FuncionarioAction">
+		<action name="saveOrUpdateFuncionario" method="saveOrUpdate" class="br.com.soc.action.FuncionarioAction">
 			<result name="success" type="redirect">listFuncionario</result>
 		</action>
-		<action name="listFuncionario" method="list" class="br.com.action.FuncionarioAction">
+		<action name="listFuncionario" method="list" class="br.com.soc.action.FuncionarioAction">
 			<result name="success">/funcionario/register.jsp</result>
 		</action>
-		<action name="editFuncionario" method="edit" class="br.com.action.FuncionarioAction">
+		<action name="editFuncionario" method="edit" class="br.com.soc.action.FuncionarioAction">
 			<result name="success">/funcionario/register.jsp</result>
 		</action>
-		<action name="deleteFuncionario" method="delete" class="br.com.action.FuncionarioAction">
+		<action name="deleteFuncionario" method="delete" class="br.com.soc.action.FuncionarioAction">
 			<result name="success" type="redirect">listFuncionario</result>
 		</action>
 	</package>

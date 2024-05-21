@@ -1,20 +1,21 @@
-package br.com.domain;
+package br.com.soc.domain;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
 import lombok.Data;
 
-@Entity
 @Data
+@Entity
 @Table(name="FUNCIONARIO")
 public class Funcionario {
 
 	@Id
-	@GeneratedValue
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name="CD_FUNCIONARIO")	
 	private Long id;
 	
