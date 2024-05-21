@@ -33,7 +33,7 @@ public class ExameServiceImpl implements ExameService {
 		getConnection().setAutoCommit(false);
 		List<Exame> exames = new LinkedList<>();
 		try {
-			String sql = "SELECT * FROM EXAME ";
+			String sql = "SELECT * FROM EXAME ORDER BY 1 DESC LIMIT 20 ";
 			PreparedStatement ps = getConnection().prepareStatement(sql);
 			ResultSet rs = ps.executeQuery();
 
@@ -67,6 +67,7 @@ public class ExameServiceImpl implements ExameService {
 				while (rs.next()) {
 					exame.setId(rs.getLong("CD_EXAME"));
 					exame.setNome(rs.getString("NM_EXAME"));
+					exame.setAtivo(rs.getLong("IC_ATIVO"));
 				}
 			}
 
@@ -84,10 +85,13 @@ public class ExameServiceImpl implements ExameService {
 	public void saveExame(Exame exame) throws SQLException, Exception {
 		getConnection().setAutoCommit(false);
 		try {
-			String sql = "INSERT INTO EXAME VALUES (?,?)";
+			String sql = "INSERT INTO EXAME VALUES (?,?,?,?,?)";
 			PreparedStatement ps = getConnection().prepareStatement(sql);
 			ps.setString(1, null);
 			ps.setString(2, exame.getNome());
+			ps.setLong(3, exame.getAtivo());
+			ps.setString(4, null);
+			ps.setString(5, null);
 			ps.executeUpdate();
 		} catch (Exception e) {
 			transaction.rollback();
@@ -117,10 +121,11 @@ public class ExameServiceImpl implements ExameService {
 	public void updateExame(Exame exame) throws SQLException, Exception {
 		getConnection().setAutoCommit(false);
 		try {
-			String sql = "UPDATE EXAME SET NM_EXAME=? WHERE CD_EXAME=? ";
+			String sql = "UPDATE EXAME SET NM_EXAME=?, IC_ATIVO =? WHERE CD_EXAME=? ";
 			PreparedStatement ps = getConnection().prepareStatement(sql);
 			ps.setString(1, exame.getNome());
-			ps.setLong(2, exame.getId());
+			ps.setLong(2, exame.getAtivo());
+			ps.setLong(3, exame.getId());
 			ps.executeUpdate();
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -131,5 +136,5 @@ public class ExameServiceImpl implements ExameService {
 			}
 		}
 	}
-
+	
 }

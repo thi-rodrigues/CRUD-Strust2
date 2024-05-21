@@ -16,15 +16,14 @@
             <s:form action="saveOrUpdateExame">
                 <s:push value="exame">
                     <s:hidden name="id" />
-                    <s:textfield name="nome" label="Nome Exame" />
-                    <br>
-                    <s:radio id="ativo" name="ativo" title="Ativo"   list="#{ '1' : 'Ativo'}"/>
-					<s:radio id="ativo" name="ativo" title="Inativo" list="#{ '0' : 'Inativo'}"/>
-                    <s:submit value="Gravar"/>
+                    <s:textfield name="name" label="Exame Name" />
+                    <s:radio name="gender" label="Gender" list="{'Ativo','Inativo'}" />
+                    <s:select name="country" list="{'India','USA','UK'}" headerKey="" headerValue="Select"
+                        label="Select a country" />
+                    <s:textarea name="aboutYou" label="About You" />
+                    <s:submit />
                 </s:push>
             </s:form>
-            
-            <hr>
 
             <s:if test="exameList.size() > 0">
                 <div class="content">

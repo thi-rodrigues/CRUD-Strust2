@@ -13,6 +13,7 @@ import lombok.Data;
 @Entity
 @Table(name="EXAME")
 public class Exame {
+	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name="CD_EXAME")	
@@ -22,5 +23,5 @@ public class Exame {
 	private String nome;
 	
 	@Column(name="IC_ATIVO")
-	private String ativo;
+	private Long ativo;
 }
