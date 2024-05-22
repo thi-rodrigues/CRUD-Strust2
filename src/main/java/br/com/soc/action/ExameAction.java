@@ -13,6 +13,7 @@ import com.opensymphony.xwork2.ActionSupport;
 import com.opensymphony.xwork2.ModelDriven;
 
 import br.com.soc.domain.Exame;
+import br.com.soc.domain.ExameRealizadoKey;
 import br.com.soc.domain.Funcionario;
 import br.com.soc.service.ExameService;
 import br.com.soc.service.FuncionarioService;
@@ -25,6 +26,8 @@ public class ExameAction extends ActionSupport implements ModelDriven<Exame> {
 
 	private static final long serialVersionUID = -6659925652584240539L;
 
+	@Getter
+	@Setter
 	private Exame exame = new Exame();
 	@Getter
 	@Setter
@@ -32,7 +35,9 @@ public class ExameAction extends ActionSupport implements ModelDriven<Exame> {
 	@Getter
 	@Setter
 	private List<Funcionario> funcionarioList = new ArrayList<>();
-	
+	@Getter
+	@Setter
+	private ExameRealizadoKey exameRealizadoKey = new ExameRealizadoKey();
 	private ExameService exameService = new ExameServiceImpl();
 	private FuncionarioService funcionarioService = new FuncionarioServiceImpl();
 
@@ -76,18 +81,10 @@ public class ExameAction extends ActionSupport implements ModelDriven<Exame> {
 		exameList = exameService.buscarExames(exame);
 		return SUCCESS;
 	}
-	
+
 	public String buscarfuncionarios() throws SQLException, Exception {
 		funcionarioList = funcionarioService.listFuncionario();
 		return SUCCESS;
-	}
-
-	public Exame getExame() {
-		return exame;
-	}
-
-	public void setExame(Exame exame) {
-		this.exame = exame;
 	}
 
 }

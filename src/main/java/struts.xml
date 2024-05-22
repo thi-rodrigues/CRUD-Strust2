@@ -34,5 +34,8 @@
 		<action name="deleteExame" method="delete" class="br.com.soc.action.ExameAction">
 			<result name="success" type="redirect">listExame</result>
 		</action>
+		<action name="saveRealizarExame" method="realizarExame" class="br.com.soc.action.ExameRealizadoAction">
+			<result name="success" type="redirect">listExame</result>
+		</action>
 	</package>
 </struts>

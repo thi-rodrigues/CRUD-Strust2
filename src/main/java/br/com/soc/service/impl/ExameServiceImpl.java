@@ -33,7 +33,7 @@ public class ExameServiceImpl implements ExameService {
 		getConnection().setAutoCommit(false);
 		List<Exame> exames = new LinkedList<>();
 		try {
-			String sql = "SELECT * FROM EXAME ORDER BY 1 DESC LIMIT 5 ";
+			String sql = "SELECT * FROM EXAME WHERE IC_ATIVO = 1 ORDER BY NM_EXAME LIMIT 5 ";
 			PreparedStatement ps = getConnection().prepareStatement(sql);
 			ResultSet rs = ps.executeQuery();
 
@@ -147,15 +147,39 @@ public class ExameServiceImpl implements ExameService {
 	@Override
 	public void deleteExame(Long exameId) throws SQLException, Exception {
 		getConnection().setAutoCommit(false);
+		// NÃO DELETA EXAME SE ESTIVER EXAME REALIZADO
+		if (!exameRealizado(exameId)) {
+			try {
+				String sql = "DELETE FROM EXAME WHERE CD_EXAME=?";
+				PreparedStatement ps = getConnection().prepareStatement(sql);
+				ps.setLong(1, exameId);
+				ps.executeUpdate();
+			} catch (Exception e) {
+				transaction.rollback();
+				e.printStackTrace();
+			}
+		}
+	}
+
+	private Boolean exameRealizado(Long exameId) {
+		int exameRealizado = 0;
 		try {
-			String sql = "DELETE FROM EXAME WHERE CD_EXAME=?";
+			String sql = "SELECT COUNT(*) AS COUNT FROM EXAME_REALIZADO WHERE CD_EXAME=?";
 			PreparedStatement ps = getConnection().prepareStatement(sql);
 			ps.setLong(1, exameId);
-			ps.executeUpdate();
+			
+			ResultSet rs = ps.executeQuery();
+			
+			if (rs != null) {
+				while (rs.next()) {
+					exameRealizado = rs.getInt("COUNT");
+				}
+			}
 		} catch (Exception e) {
 			transaction.rollback();
 			e.printStackTrace();
 		}
+		return exameRealizado > 0;
 	}
 
 	@Override

@@ -33,7 +33,7 @@ public class FuncionarioServiceImpl implements FuncionarioService {
 		getConnection().setAutoCommit(false);
 		List<Funcionario> funcionarios = new LinkedList<>();
 		try {
-			String sql = "SELECT * FROM FUNCIONARIO ";
+			String sql = "SELECT * FROM FUNCIONARIO ORDER BY NM_FUNCIONARIO";
 			PreparedStatement ps = getConnection().prepareStatement(sql);
 			ResultSet rs = ps.executeQuery();
 
@@ -102,6 +102,9 @@ public class FuncionarioServiceImpl implements FuncionarioService {
 	@Override
 	public void deleteFuncionario(Long funcionarioId) throws SQLException, Exception {
 		getConnection().setAutoCommit(false);
+		// DELETAR EXAMES DO FUNCIONARIO
+		deletarExamesFuncionario(funcionarioId);
+		
 		try {
 			String sql = "DELETE FROM FUNCIONARIO WHERE CD_FUNCIONARIO=?";
 			PreparedStatement ps = getConnection().prepareStatement(sql);
@@ -111,6 +114,19 @@ public class FuncionarioServiceImpl implements FuncionarioService {
 			transaction.rollback();
 			e.printStackTrace();
 		}
+	}
+
+	private void deletarExamesFuncionario(Long funcionarioId) {
+		try {
+			String sql = "DELETE FROM EXAME_REALIZADO WHERE CD_FUNCIONARIO=?";
+			PreparedStatement ps = getConnection().prepareStatement(sql);
+			ps.setLong(1, funcionarioId);
+			ps.executeUpdate();
+		} catch (Exception e) {
+			transaction.rollback();
+			e.printStackTrace();
+		}
+		
 	}
 
 	@Override

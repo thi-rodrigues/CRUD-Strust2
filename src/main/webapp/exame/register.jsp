@@ -13,12 +13,16 @@
         </head>
 
         <body>
-        	<s:form action="saveOrUpdateExame">
-                <s:push value="exame">
+        	<s:form action="saveRealizarExame">
+                <s:push value="exameRealizadoKey">
                 <h2>Realizar Exame</h2>
-					<s:select label="Exame" list="exameList" listValue="%{nome}" listKey="%{id}" />
-					<s:select label="Funcionário" list="funcionarioList" listValue="%{nome}" listKey="%{id}" />
-				
+					
+					<s:select label="Exame" headerKey="0" list="exameList" listValue="%{nome}" 
+						listKey="id" name="exameId" />
+						
+					<s:select label="Funcionário" headerKey="0" list="funcionarioList" listValue="%{nome}" 
+						listKey="id" name="funcionarioId" />
+						
                     <s:submit value="Gravar"/>
                 </s:push>
             </s:form>
