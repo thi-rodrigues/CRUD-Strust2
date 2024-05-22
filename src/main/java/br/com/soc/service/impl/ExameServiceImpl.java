@@ -33,7 +33,7 @@ public class ExameServiceImpl implements ExameService {
 		getConnection().setAutoCommit(false);
 		List<Exame> exames = new LinkedList<>();
 		try {
-			String sql = "SELECT * FROM EXAME ORDER BY 1 DESC LIMIT 20 ";
+			String sql = "SELECT * FROM EXAME ORDER BY 1 DESC LIMIT 5 ";
 			PreparedStatement ps = getConnection().prepareStatement(sql);
 			ResultSet rs = ps.executeQuery();
 
@@ -52,14 +52,24 @@ public class ExameServiceImpl implements ExameService {
 	}
 
 	@Override
-	public Exame listExameById(Long codExame) throws SQLException, Exception {
+	public List<Exame> buscarExames(Exame exame) throws SQLException, Exception {
+		List<Exame> exames = new LinkedList<>();
 		getConnection().setAutoCommit(false);
-		Exame exame = new Exame();
 		try {
 			StringBuilder sql = new StringBuilder("SELECT * FROM EXAME WHERE 1=1 ");
-			if (codExame != null)
-				sql.append(" AND CD_EXAME = " + codExame);
+			if (exame.getId() != null)
+				sql.append(" AND CD_EXAME = " + exame.getId());
+			
+			if (exame.getNome() != null && !exame.getNome().equals(""))
+				sql.append(" AND NM_EXAME = '" + exame.getNome() + "'");
+			
+			if (exame.getAtivo() != null && !exame.getAtivo().equals(2L))
+				sql.append(" AND IC_ATIVO = " + exame.getAtivo());
+			else if (exame.getAtivo() != null)
+				sql.append(" AND IC_ATIVO IN (0, 1) ");
 
+			sql.append(" LIMIT 20 ");
+			
 			PreparedStatement ps = getConnection().prepareStatement(sql.toString());
 			ResultSet rs = ps.executeQuery();
 
@@ -68,9 +78,40 @@ public class ExameServiceImpl implements ExameService {
 					exame.setId(rs.getLong("CD_EXAME"));
 					exame.setNome(rs.getString("NM_EXAME"));
 					exame.setAtivo(rs.getLong("IC_ATIVO"));
+					exames.add(exame);
 				}
 			}
 
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			if (getConnection() != null) {
+				getConnection().close();
+			}
+		}
+		return exames;
+	}
+	
+	@Override
+	public Exame buscarExamePorId(Long exameId) throws SQLException, Exception {
+		getConnection().setAutoCommit(false);
+		Exame exame = new Exame();
+		try {
+			StringBuilder sql = new StringBuilder("SELECT * FROM EXAME WHERE 1=1 ");
+			if (exameId != null)
+				sql.append(" AND CD_EXAME = " + exameId);
+			
+			PreparedStatement ps = getConnection().prepareStatement(sql.toString());
+			ResultSet rs = ps.executeQuery();
+			
+			if (rs != null) {
+				while (rs.next()) {
+					exame.setId(rs.getLong("CD_EXAME"));
+					exame.setNome(rs.getString("NM_EXAME"));
+					exame.setAtivo(rs.getLong("IC_ATIVO"));
+				}
+			}
+			
 		} catch (Exception e) {
 			e.printStackTrace();
 		} finally {

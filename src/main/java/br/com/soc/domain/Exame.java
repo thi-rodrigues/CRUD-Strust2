@@ -7,11 +7,15 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
+import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 @Data
 @Entity
 @Table(name="EXAME")
+@NoArgsConstructor
+@AllArgsConstructor
 public class Exame {
 	
 	@Id
@@ -24,4 +28,8 @@ public class Exame {
 	
 	@Column(name="IC_ATIVO")
 	private Long ativo;
+	
+	public Exame(Long id) {
+		this.id = id;
+	}
 }

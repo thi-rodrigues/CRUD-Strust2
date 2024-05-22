@@ -11,7 +11,9 @@ public interface ExameService {
 	
 	public List<Exame> listExame() throws SQLException, Exception;
 	
-	public Exame listExameById(Long exameId) throws SQLException, Exception;
+	public List<Exame> buscarExames(Exame exame) throws SQLException, Exception;
+	
+	public Exame buscarExamePorId(Long exameId) throws SQLException, Exception;
 	
 	public void deleteExame(Long exameId) throws SQLException, Exception;;
 	

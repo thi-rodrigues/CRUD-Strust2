@@ -25,6 +25,9 @@
 		<action name="listExame" method="list" class="br.com.soc.action.ExameAction">
 			<result name="success">/exame/register.jsp</result>
 		</action>
+		<action name="findExames" method="buscarExames" class="br.com.soc.action.ExameAction">
+			<result name="success">/exame/register.jsp</result>
+		</action>
 		<action name="editExame" method="edit" class="br.com.soc.action.ExameAction">
 			<result name="success">/exame/register.jsp</result>
 		</action>

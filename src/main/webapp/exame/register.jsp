@@ -13,6 +13,18 @@
         </head>
 
         <body>
+        	<s:form action="saveOrUpdateExame">
+                <s:push value="exame">
+                <h2>Realizar Exame</h2>
+					<s:select label="Exame" list="exameList" listValue="%{nome}" listKey="%{id}" />
+					<s:select label="Funcionário" list="funcionarioList" listValue="%{nome}" listKey="%{id}" />
+				
+                    <s:submit value="Gravar"/>
+                </s:push>
+            </s:form>
+            <br>
+            <hr>
+            <br>
             <s:form action="saveOrUpdateExame">
                 <s:push value="exame">
                     <s:hidden name="id" />
@@ -21,6 +33,20 @@
                     <s:radio id="ativo" name="ativo" title="Ativo"   list="#{ '1' : 'Ativo'}"/>
 					<s:radio id="ativo" name="ativo" title="Inativo" list="#{ '0' : 'Inativo'}"/>
                     <s:submit value="Gravar"/>
+                </s:push>
+            </s:form>
+            
+            <hr>
+            <h3>Pesquisar Exame</h3>
+            <s:form action="findExames">
+                <s:push value="exame">
+                    <s:textfield name="id" label="Cod. Exame"/>
+                    <s:textfield name="nome" label="Nome Exame" />
+                    <br>
+                    <s:radio id="ativo" name="ativo" title="Ativo"   list="#{ '1' : 'Ativo'}"/>
+					<s:radio id="ativo" name="ativo" title="Inativo" list="#{ '0' : 'Inativo'}"/>
+					<s:radio id="ativo" name="ativo" title="Ambos"   list="#{ '2' : 'Ambos'}"/>
+                    <s:submit value="Buscar"/>
                 </s:push>
             </s:form>
             
