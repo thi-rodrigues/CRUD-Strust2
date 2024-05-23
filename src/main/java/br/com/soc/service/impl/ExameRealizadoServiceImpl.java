@@ -5,8 +5,6 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.time.LocalDate;
-import java.time.LocalDateTime;
-import java.util.Date;
 
 import org.hibernate.Session;
 import org.hibernate.Transaction;
@@ -16,6 +14,7 @@ import com.googlecode.s2hibernate.struts2.plugin.annotations.TransactionTarget;
 
 import br.com.soc.dao.ConnectionDao;
 import br.com.soc.domain.ExameRealizadoKey;
+import br.com.soc.domain.dto.FiltroExameRealizado;
 import br.com.soc.service.ExameRealizadoService;
 
 public class ExameRealizadoServiceImpl implements ExameRealizadoService {
@@ -82,6 +81,36 @@ public class ExameRealizadoServiceImpl implements ExameRealizadoService {
 				}
 			}
 		return exameRealizado > 0;
+	}
+	
+	@Override
+	public void downloadExameRealizado(FiltroExameRealizado filtroExameRealizado) throws SQLException, Exception {
+		getConnection().setAutoCommit(false);
+		try {
+			String sql = "SELECT e.cd_exame, e.nm_exame, er.dt_realizacao, f.cd_funcionario, f.nm_funcionario "
+					+ "		FROM exame_realizado er "
+					+ "		LEFT join funcionario f on f.cd_funcionario = er.cd_funcionario "
+					+ "		JOIN exame e on e.cd_exame = er.cd_exame "
+					+ "		WHERE CAST(er.dt_realizacao as date) BETWEEN "
+					+ "		'" + filtroExameRealizado.getDtInicial() + "' AND "
+					+ "		'" + filtroExameRealizado.getDtFinal() + "'  ";
+			
+			PreparedStatement ps = getConnection().prepareStatement(sql);
+			
+			ResultSet rs = ps.executeQuery();
+			if (rs != null) {
+				while (rs.next()) {
+					
+				}
+			}
+		} catch (Exception e) {
+			transaction.rollback();
+			e.printStackTrace();
+		} finally {
+			if (getConnection() != null) {
+				getConnection().close();
+			}
+		}
 	}
 	
 }

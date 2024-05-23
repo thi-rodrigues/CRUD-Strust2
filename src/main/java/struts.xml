@@ -37,5 +37,11 @@
 		<action name="saveRealizarExame" method="realizarExame" class="br.com.soc.action.ExameRealizadoAction">
 			<result name="success" type="redirect">listExame</result>
 		</action>
+				
+<!-- DOWNLOAD EXAME REALIZADO -->
+		<action name="downloadExameRealizado" method="downloadExameRealizado" class="br.com.soc.action.FiltroExameRealizadoAction">
+			<result name="success" type="redirect">listExame</result>
+		</action>
+
 	</package>
 </struts>
