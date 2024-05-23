@@ -4,7 +4,12 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Timestamp;
+import java.time.Instant;
 import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.util.LinkedList;
+import java.util.List;
 
 import org.hibernate.Session;
 import org.hibernate.Transaction;
@@ -14,6 +19,7 @@ import com.googlecode.s2hibernate.struts2.plugin.annotations.TransactionTarget;
 
 import br.com.soc.dao.ConnectionDao;
 import br.com.soc.domain.ExameRealizadoKey;
+import br.com.soc.domain.dto.ExameRealizadoDownload;
 import br.com.soc.domain.dto.FiltroExameRealizado;
 import br.com.soc.service.ExameRealizadoService;
 
@@ -86,6 +92,8 @@ public class ExameRealizadoServiceImpl implements ExameRealizadoService {
 	@Override
 	public void downloadExameRealizado(FiltroExameRealizado filtroExameRealizado) throws SQLException, Exception {
 		getConnection().setAutoCommit(false);
+		List<ExameRealizadoDownload> exameRealizadoDownloads = new LinkedList<>();
+				
 		try {
 			String sql = "SELECT e.cd_exame, e.nm_exame, er.dt_realizacao, f.cd_funcionario, f.nm_funcionario "
 					+ "		FROM exame_realizado er "
@@ -100,8 +108,18 @@ public class ExameRealizadoServiceImpl implements ExameRealizadoService {
 			ResultSet rs = ps.executeQuery();
 			if (rs != null) {
 				while (rs.next()) {
-					
+					ExameRealizadoDownload exameRealizadoDownload = new ExameRealizadoDownload();
+					exameRealizadoDownload.setCdExame(rs.getLong("cd_exame"));
+					exameRealizadoDownload.setNmExame(rs.getString("nm_exame"));
+//					rs.getDate("dt_realizacao")
+					exameRealizadoDownload.setDtRealizacao(LocalDateTime.now());
+					exameRealizadoDownload.setCdFuncionario(rs.getLong("cd_funcionario"));
+					exameRealizadoDownload.setNmFuncionario(rs.getString("nm_funcionario"));
+					exameRealizadoDownloads.add(exameRealizadoDownload);
 				}
+				// GERAR XLS
+				CriarArquivoExcel criarArquivoExcel = new CriarArquivoExcel();
+				criarArquivoExcel.criarArquivo("D:\\WS-BACKEND\\Struts2\\projeto_struts_crud\\testes.xlsx", exameRealizadoDownloads);
 			}
 		} catch (Exception e) {
 			transaction.rollback();
