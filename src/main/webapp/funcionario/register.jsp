@@ -32,8 +32,7 @@
 	                        <tr">
 	                            <th>Cod.</th>
 	                            <th>Nome</th>
-	                            <th>Editar</th>
-	                            <th>Deletar</th>
+	                            <th style="text-align: center;">Ação</th>
 	                        </tr>
 						</thead>
 	                        <s:iterator value="funcionarioList" status="funcionarioStatus">
@@ -45,14 +44,12 @@
 		                                <td>
 		                                    <s:property value="nome" />
 		                                </td>
-		                                <td>
+		                                <td style="text-align: center;">
 		                                    <s:url id="editURL" action="editFuncionario">
 		                                        <s:param name="id" value="%{id}"></s:param>
 		                                    </s:url>
-		                                    <s:a href="%{editURL}">Editar</s:a>
-		                                </td>
+		                                    <s:a href="%{editURL}" style="padding-right:30px;">Editar</s:a>
 		
-		                                <td>
 		                                    <s:url id="deleteURL" action="deleteFuncionario">
 		                                        <s:param name="id" value="%{id}"></s:param>
 		                                    </s:url>

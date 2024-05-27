@@ -21,17 +21,18 @@
     		
 	        <div class="container">
 	            <h4>Relatório de Exames</h4>
-	        	<s:form action="downloadExameRealizado">
+	        	<s:form action="downloadExameRealizado" class="form-horizontal" >
 	                <s:push value="exameRealizadoKey">
-						<s:textfield name="dtInicial" label="Data Inicial" />
-						<s:textfield name="dtFinal" label="Data Final" />
-	                    <s:submit value="Download"/>
+	                <s:textfield name="dtInicial" type="date" class="input-small" label="Data Inicial" required="true" />
+	                <s:textfield name="dtFinal" type="date" class="input-small" label="Data Final" required="true" />
+	                <br>
+                    <s:submit value="Download"/>
 	                </s:push>
 	            </s:form>
 	            <br>
 	            <hr>
 	            <br>
-	        	<s:form action="saveRealizarExame" enctype="multipart/form-data" theme="bootstrap" cssClass="form-horizontal">
+	        	<s:form action="saveRealizarExame" class="form-horizontal">
 	                <s:push value="exameRealizadoKey">
 	                	<h4>Realizar Exame</h4>
 						
@@ -47,7 +48,7 @@
 	            <br>
 	            <hr>
 	            <br>
-	            <s:form action="saveOrUpdateExame" enctype="multipart/form-data" theme="bootstrap" cssClass="form-horizontal">
+	            <s:form action="saveOrUpdateExame" class="form-horizontal">
 	            	<h4>Novo Exame</h4>
 	                <s:push value="exame">
 	                    <s:hidden name="id" />
@@ -116,6 +117,7 @@
 	            <br>
 	            <!--  EXAME REALIZADO  -->
 	            <s:if test="examesRealizados.size() > 0">
+	            	<h3> EXAMES REALIZADOS </h3>
 	            	<table class="table table-striped">
 	                   	<thead>
 	                   		<tr>
@@ -127,8 +129,7 @@
 	                         <th>Cód. Funcionário</th>
 	                         <th>Nome Funcionário</th>
 	                         <th>dt_realizacao</th>
-	                         <th>Editar</th>
-	                         <th>Deletar</th>
+	                         <th>Ação</th>
 	                     </tr>
 	                   	</thead>
 	                        <s:iterator value="examesRealizados" status="examesRealizadosStatus">
@@ -141,14 +142,7 @@
 		                                <td><s:property value="exame.dsDetalheExame1" /></td>
 		                                <td><s:property value="funcionario.id" /></td>
 		                                <td><s:property value="funcionario.nome" /></td>
-		                                <td><s:property value="dtRealizacao" /></td>
-		                                <td>
-		                                    <s:url id="editURL" action="editExame">
-		                                        <s:param name="id" value="%{id}"></s:param>
-		                                    </s:url>
-		                                    <s:a href="%{editURL}">Editar </s:a>
-		                                </td>
-		
+		                                <td><s:property value="dtRealizacao"  /></td>
 		                                <td>
 		                                    <s:url id="deleteURL" action="deleteExame">
 		                                        <s:param name="id" value="%{id}"></s:param>

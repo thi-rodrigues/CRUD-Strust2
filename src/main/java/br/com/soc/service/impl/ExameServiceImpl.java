@@ -228,6 +228,7 @@ public class ExameServiceImpl implements ExameService {
 					exame.setDsDetalheExame1(rs.getString("DS_DETALHE_EXAME1"));
 					
 					Funcionario funcionario = new Funcionario();
+					funcionario.setId(rs.getLong("CD_FUNCIONARIO"));
 					funcionario.setNome(rs.getString("NM_FUNCIONARIO"));
 					
 					Timestamp dtRealizacao = rs.getTimestamp("DT_REALIZACAO");
