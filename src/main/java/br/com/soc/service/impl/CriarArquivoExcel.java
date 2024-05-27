@@ -7,6 +7,7 @@ import java.util.List;
 
 import org.apache.poi.ss.usermodel.Cell;
 import org.apache.poi.ss.usermodel.Row;
+import org.apache.poi.xssf.usermodel.XSSFRow;
 import org.apache.poi.xssf.usermodel.XSSFSheet;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 
@@ -28,7 +29,7 @@ public class CriarArquivoExcel {
 			adicionarCabecalho(sheet, numeroDaLinha++);
 
 			for (ExameRealizadoDownload e : exameRealizadoDownloads) {
-				var linha = sheet.createRow(numeroDaLinha++);
+				XSSFRow linha = sheet.createRow(numeroDaLinha++);
 				adicionarCelula(linha, 0, e.getCdExame().toString());
 				adicionarCelula(linha, 1, e.getNmExame());
 				adicionarCelula(linha, 2, e.getDtRealizacao().toString());
