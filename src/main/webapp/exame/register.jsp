@@ -1,18 +1,22 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1" pageEncoding="ISO-8859-1" %>
     <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
-    <%@taglib uri="/struts-tags" prefix="s" %>
+    <%@taglib prefix="s" uri="/struts-tags" %>
+    <%@taglib prefix="sb" uri="/struts-bootstrap-tags" %>
         <html>
 
         <head>
             <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+            <meta name="viewport" content="width=device-width, initial-scale=1">
+            <link href="../style.css" rel="stylesheet" media="screen">
             <title>Cadastrar Exame</title>
-            <s:head />
+            <sb:head />
             <style type="text/css">
                 @import url(style.css);
             </style>
         </head>
 
         <body>
+        <div class="container">
             <h4>Relatório de Exames</h4>
         	<s:form action="downloadExameRealizado">
                 <s:push value="exameRealizadoKey">
@@ -24,7 +28,7 @@
             <br>
             <hr>
             <br>
-        	<s:form action="saveRealizarExame">
+        	<s:form action="saveRealizarExame" enctype="multipart/form-data" theme="bootstrap" cssClass="form-horizontal">
                 <s:push value="exameRealizadoKey">
                 	<h4>Realizar Exame</h4>
 					
@@ -40,13 +44,13 @@
             <br>
             <hr>
             <br>
-            <s:form action="saveOrUpdateExame">
+            <s:form action="saveOrUpdateExame" enctype="multipart/form-data" theme="bootstrap" cssClass="form-horizontal">
             	<h4>Novo Exame</h4>
                 <s:push value="exame">
                     <s:hidden name="id" />
-                    <s:textfield name="nome" label="Nome Exame" />
-                    <s:radio id="ativo" name="ativo" title="Ativo"   list="#{ '1' : 'Ativo'}"/>
-					<s:radio id="ativo" name="ativo" title="Inativo" list="#{ '0' : 'Inativo'}"/>
+                    <s:textfield name="nome" label="Nome Exame" required="true"/>
+                    <s:radio id="ativo" name="ativo" title="Ativo"   list="#{ '1' : 'Ativo'}" required="true" />
+					<s:radio id="ativo" name="ativo" title="Inativo" list="#{ '0' : 'Inativo'}" required="true" />
                     <s:submit value="Gravar"/>
                 </s:push>
             </s:form>
@@ -101,6 +105,7 @@
                     </table>
                 </div>
             </s:if>
+        </div>
         </body>
 
         </html>

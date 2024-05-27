@@ -87,7 +87,7 @@ public class FuncionarioServiceImpl implements FuncionarioService {
 			String sql = "INSERT INTO FUNCIONARIO VALUES (?,?)";
 			PreparedStatement ps = getConnection().prepareStatement(sql);
 			ps.setString(1, null);
-			ps.setString(2, funcionario.getNome());
+			ps.setString(2, funcionario.getNome().trim());
 			ps.executeUpdate();
 		} catch (Exception e) {
 			transaction.rollback();

@@ -33,9 +33,9 @@ public class FuncionarioAction extends ActionSupport implements ModelDriven<Func
 		HttpServletRequest request = (HttpServletRequest) ActionContext.getContext()
 				.get(ServletActionContext.HTTP_REQUEST);
 		
-		if (request.getParameter("id").equals(""))
+		if (request.getParameter("id").equals("") && funcionario.getNome() != null && !funcionario.getNome().equals(""))
 			funcionarioService.saveFuncionario(funcionario);
-		else
+		else if (!request.getParameter("id").equals(""))
 			funcionarioService.updateFuncionario(funcionario);
 		return SUCCESS;
 	}

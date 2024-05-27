@@ -50,9 +50,9 @@ public class ExameAction extends ActionSupport implements ModelDriven<Exame> {
 		HttpServletRequest request = (HttpServletRequest) ActionContext.getContext()
 				.get(ServletActionContext.HTTP_REQUEST);
 
-		if (request.getParameter("id").equals(""))
+		if (request.getParameter("id").equals("") && exame.getNome() != null && exame.getAtivo() != null)
 			exameService.saveExame(exame);
-		else
+		else if (!request.getParameter("id").equals(""))
 			exameService.updateExame(exame);
 		return SUCCESS;
 	}

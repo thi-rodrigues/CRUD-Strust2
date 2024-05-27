@@ -5,28 +5,27 @@
 
         <head>
             <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+            <meta name="viewport" content="width=device-width, initial-scale=1">
+            <link href="../style.css" rel="stylesheet" media="screen">
             <title>Cadastrar Exame</title>
-            <s:head />
-            <style type="text/css">
-                @import url(style.css);
-            </style>
+            <sb:head />
         </head>
 
         <body>
-            <s:form action="saveOrUpdateExame">
-                <s:push value="exame">
-                    <s:hidden name="id" />
-                    <s:textfield name="name" label="Exame Name" />
-                    <s:radio name="gender" label="Gender" list="{'Ativo','Inativo'}" />
-                    <s:select name="country" list="{'India','USA','UK'}" headerKey="" headerValue="Select"
-                        label="Select a country" />
-                    <s:textarea name="aboutYou" label="About You" />
-                    <s:submit />
-                </s:push>
-            </s:form>
+			<div class="content">
+	            <s:form action="saveOrUpdateExame" enctype="multipart/form-data" theme="bootstrap" cssClass="form-horizontal">
+	                <s:push value="exame">
+	                    <s:hidden name="id" />
+	                    <s:textfield name="name" label="Exame Name" placeholder="Nome" required="true" />
+	                    <s:radio name="gender" label="Gender" list="{'Ativo','Inativo'}" />
+	                    <s:select name="country" list="{'India','USA','UK'}" headerKey="" headerValue="Select"
+	                        label="Select a country" />
+	                    <s:textarea name="aboutYou" label="About You" />
+	                    <s:submit />
+	                </s:push>
+	            </s:form>
 
-            <s:if test="exameList.size() > 0">
-                <div class="content">
+            	<s:if test="exameList.size() > 0">
                     <table class="exameTable" cellpadding="5px">
                         <tr class="even">
                             <th>Cod.</th>
@@ -58,8 +57,8 @@
                             </tr>
                         </s:iterator>
                     </table>
-                </div>
-            </s:if>
+				</s:if>
+			</div>
         </body>
 
         </html>
