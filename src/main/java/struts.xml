@@ -42,6 +42,11 @@
 		<action name="downloadExameRealizado" method="downloadExameRealizado" class="br.com.soc.action.FiltroExameRealizadoAction">
 			<result name="success" type="redirect">listExame</result>
 		</action>
+		
+<!-- EXCLUIR EXAME REALIZADO -->
+		<action name="deleteExameRealizado" method="deletarExameRealizado" class="br.com.soc.action.ExameRealizadoAction">
+			<result name="success" type="redirect">listExame</result>
+		</action>
 
 	</package>
 </struts>

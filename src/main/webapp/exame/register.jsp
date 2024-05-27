@@ -124,11 +124,11 @@
 	                         <th>Cod. Exame</th>
 	                         <th>Nome Exame</th>
 	                         <th>Ativo</th>
-	                         <th>ds_detalhe_exame</th>
-	                         <th>ds_detalhe_exame1</th>
+	                         <th>Detalhe Exame</th>
+	                         <th>Detalhe Eexame1</th>
 	                         <th>Cód. Funcionário</th>
 	                         <th>Nome Funcionário</th>
-	                         <th>dt_realizacao</th>
+	                         <th>Realização</th>
 	                         <th>Ação</th>
 	                     </tr>
 	                   	</thead>
@@ -144,8 +144,9 @@
 		                                <td><s:property value="funcionario.nome" /></td>
 		                                <td><s:property value="dtRealizacao"  /></td>
 		                                <td>
-		                                    <s:url id="deleteURL" action="deleteExame">
-		                                        <s:param name="id" value="%{id}"></s:param>
+		                                	<s:url id="deleteURL" action="deleteExameRealizado">
+		                                        <s:param name="exameId" value="%{exame.id}"></s:param>
+		                                        <s:param name="funcionarioId" value="%{funcionario.id}"></s:param>
 		                                    </s:url>
 		                                    <s:a href="%{deleteURL}">Deletar</s:a>
 		                                </td>

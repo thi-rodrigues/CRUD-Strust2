@@ -2,6 +2,11 @@ package br.com.soc.action;
 
 import java.sql.SQLException;
 
+import javax.servlet.http.HttpServletRequest;
+
+import org.apache.struts2.ServletActionContext;
+
+import com.opensymphony.xwork2.ActionContext;
 import com.opensymphony.xwork2.ActionSupport;
 import com.opensymphony.xwork2.ModelDriven;
 
@@ -28,6 +33,11 @@ public class ExameRealizadoAction extends ActionSupport implements ModelDriven<E
 
 	public String realizarExame() throws SQLException, Exception {
 		exameRealizadoService.saveExameRealizado(exameRealizadoKey);
+		return SUCCESS;
+	}
+	
+	public String deletarExameRealizado() throws SQLException, Exception {
+		exameRealizadoService.deletarExameRealizado(exameRealizadoKey);
 		return SUCCESS;
 	}
 

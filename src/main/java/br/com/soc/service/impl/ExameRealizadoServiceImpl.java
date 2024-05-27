@@ -130,5 +130,26 @@ public class ExameRealizadoServiceImpl implements ExameRealizadoService {
 			}
 		}
 	}
+
+	@Override
+	public void deletarExameRealizado(ExameRealizadoKey exameRealizadoKey) throws SQLException, Exception {
+		getConnection().setAutoCommit(false);
+
+		try {
+			String sql = "DELETE FROM EXAME_REALIZADO WHERE CD_EXAME =? AND CD_FUNCIONARIO =?";
+			PreparedStatement ps = getConnection().prepareStatement(sql);
+			ps.setLong(1, exameRealizadoKey.getExameId());
+			ps.setLong(2, exameRealizadoKey.getFuncionarioId());
+			System.out.println("deletarExameRealizado: " + sql);
+			ps.executeUpdate();
+		} catch (Exception e) {
+			transaction.rollback();
+			e.printStackTrace();
+		} finally {
+			if (getConnection() != null) {
+				getConnection().close();
+			}
+		}
+	}
 	
 }

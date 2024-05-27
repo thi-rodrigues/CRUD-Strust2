@@ -10,5 +10,7 @@ public interface ExameRealizadoService {
 	public void saveExameRealizado(ExameRealizadoKey exameRealizado) throws SQLException, Exception;
 
 	public void downloadExameRealizado(FiltroExameRealizado filtroExameRealizado) throws SQLException, Exception;
+
+	public void deletarExameRealizado(ExameRealizadoKey exameRealizadoKey) throws SQLException, Exception;
 	
 }
