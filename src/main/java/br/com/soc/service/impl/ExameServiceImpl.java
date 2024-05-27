@@ -4,6 +4,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Timestamp;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -15,6 +16,8 @@ import com.googlecode.s2hibernate.struts2.plugin.annotations.TransactionTarget;
 
 import br.com.soc.dao.ConnectionDao;
 import br.com.soc.domain.Exame;
+import br.com.soc.domain.ExameRealizado;
+import br.com.soc.domain.Funcionario;
 import br.com.soc.service.ExameService;
 
 public class ExameServiceImpl implements ExameService {
@@ -200,6 +203,48 @@ public class ExameServiceImpl implements ExameService {
 				getConnection().close();
 			}
 		}
+	}
+	
+	@Override
+	public List<ExameRealizado> buscarExamesRealizados() throws SQLException, Exception {
+		List<ExameRealizado> exames = new LinkedList<>();
+		getConnection().setAutoCommit(false);
+		try {
+			String sql = "SELECT e.*, f.*, er.* "
+					+ "		FROM exame_realizado er "
+					+ "		LEFT join funcionario f on f.cd_funcionario = er.cd_funcionario "
+					+ "		JOIN exame e on e.cd_exame = er.cd_exame ";
+			
+			PreparedStatement ps = getConnection().prepareStatement(sql);
+			ResultSet rs = ps.executeQuery();
+
+			if (rs != null) {
+				while (rs.next()) {
+					Exame exame = new Exame();
+					exame.setId(rs.getLong("CD_EXAME"));
+					exame.setNome(rs.getString("NM_EXAME"));
+					exame.setAtivo(rs.getLong("IC_ATIVO"));
+					exame.setDsDetalheExame(rs.getString("DS_DETALHE_EXAME"));
+					exame.setDsDetalheExame1(rs.getString("DS_DETALHE_EXAME1"));
+					
+					Funcionario funcionario = new Funcionario();
+					funcionario.setNome(rs.getString("NM_FUNCIONARIO"));
+					
+					Timestamp dtRealizacao = rs.getTimestamp("DT_REALIZACAO");
+					
+					ExameRealizado exameRealizado = new ExameRealizado(exame, funcionario, dtRealizacao.toLocalDateTime());
+					exames.add(exameRealizado);
+				}
+			}
+
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			if (getConnection() != null) {
+				getConnection().close();
+			}
+		}
+		return exames;
 	}
 	
 }

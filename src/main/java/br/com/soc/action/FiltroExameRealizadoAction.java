@@ -28,7 +28,6 @@ public class FiltroExameRealizadoAction extends ActionSupport implements ModelDr
 
 
 	public String downloadExameRealizado() throws SQLException, Exception {
-		System.out.println(filtroExameRealizado);
 		exameRealizadoService.downloadExameRealizado(filtroExameRealizado);
 		return SUCCESS;
 	}

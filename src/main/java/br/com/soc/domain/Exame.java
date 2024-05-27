@@ -29,6 +29,12 @@ public class Exame {
 	@Column(name="IC_ATIVO")
 	private Long ativo;
 	
+	@Column(name="DS_DETALHE_EXAME")
+	private String dsDetalheExame;
+	
+	@Column(name="DS_DETALHE_EXAME1")
+	private String dsDetalheExame1;
+	
 	public Exame(Long id) {
 		this.id = id;
 	}

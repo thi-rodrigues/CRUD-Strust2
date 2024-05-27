@@ -13,6 +13,7 @@ import com.opensymphony.xwork2.ActionSupport;
 import com.opensymphony.xwork2.ModelDriven;
 
 import br.com.soc.domain.Exame;
+import br.com.soc.domain.ExameRealizado;
 import br.com.soc.domain.ExameRealizadoKey;
 import br.com.soc.domain.Funcionario;
 import br.com.soc.service.ExameService;
@@ -38,6 +39,10 @@ public class ExameAction extends ActionSupport implements ModelDriven<Exame> {
 	@Getter
 	@Setter
 	private ExameRealizadoKey exameRealizadoKey = new ExameRealizadoKey();
+	@Getter
+	@Setter
+	private List<ExameRealizado> examesRealizados = new ArrayList<>();
+	
 	private ExameService exameService = new ExameServiceImpl();
 	private FuncionarioService funcionarioService = new FuncionarioServiceImpl();
 
@@ -60,6 +65,7 @@ public class ExameAction extends ActionSupport implements ModelDriven<Exame> {
 	public String list() throws SQLException, Exception {
 		exameList = exameService.listExame();
 		buscarfuncionarios();
+		buscarExamesRealizados();
 		return SUCCESS;
 	}
 
@@ -84,6 +90,11 @@ public class ExameAction extends ActionSupport implements ModelDriven<Exame> {
 
 	public String buscarfuncionarios() throws SQLException, Exception {
 		funcionarioList = funcionarioService.listFuncionario();
+		return SUCCESS;
+	}
+	
+	public String buscarExamesRealizados() throws SQLException, Exception {
+		examesRealizados = exameService.buscarExamesRealizados();
 		return SUCCESS;
 	}
 

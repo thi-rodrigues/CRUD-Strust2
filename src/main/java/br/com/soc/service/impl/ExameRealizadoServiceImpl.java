@@ -5,9 +5,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Timestamp;
-import java.time.Instant;
 import java.time.LocalDate;
-import java.time.LocalDateTime;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -111,8 +109,10 @@ public class ExameRealizadoServiceImpl implements ExameRealizadoService {
 					ExameRealizadoDownload exameRealizadoDownload = new ExameRealizadoDownload();
 					exameRealizadoDownload.setCdExame(rs.getLong("cd_exame"));
 					exameRealizadoDownload.setNmExame(rs.getString("nm_exame"));
-//					rs.getDate("dt_realizacao")
-					exameRealizadoDownload.setDtRealizacao(LocalDateTime.now());
+					
+					Timestamp dtRealizacao = rs.getTimestamp("DT_REALIZACAO");
+					exameRealizadoDownload.setDtRealizacao(dtRealizacao.toLocalDateTime());
+					
 					exameRealizadoDownload.setCdFuncionario(rs.getLong("cd_funcionario"));
 					exameRealizadoDownload.setNmFuncionario(rs.getString("nm_funcionario"));
 					exameRealizadoDownloads.add(exameRealizadoDownload);

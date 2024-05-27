@@ -13,6 +13,9 @@
         </head>
 
         <body>
+        	<script src="https://code.jquery.com/jquery.js"></script>
+    		<script src="js/bootstrap.min.js"></script>
+    		
         	<div class="container" style="margin-top: 50px;">
 	            <s:form action="saveOrUpdateFuncionario" enctype="multipart/form-data" theme="bootstrap" cssClass="form-horizontal">
 	                <s:push value="funcionario">
@@ -24,39 +27,41 @@
         	<hr>
 			<br>
 	            <s:if test="funcionarioList.size() > 0">
-	                <div class="content">
-	                    <table class="funcionarioTable" cellpadding="5px">
-	                        <tr class="even">
+	            	<table class="table table-striped">
+	                   	<thead>
+	                        <tr">
 	                            <th>Cod.</th>
 	                            <th>Nome</th>
 	                            <th>Editar</th>
 	                            <th>Deletar</th>
 	                        </tr>
+						</thead>
 	                        <s:iterator value="funcionarioList" status="funcionarioStatus">
-	                            <tr class="odd">
-	                                <td>
-	                                    <s:property value="id" />
-	                                </td>
-	                                <td>
-	                                    <s:property value="nome" />
-	                                </td>
-	                                <td>
-	                                    <s:url id="editURL" action="editFuncionario">
-	                                        <s:param name="id" value="%{id}"></s:param>
-	                                    </s:url>
-	                                    <s:a href="%{editURL}">Editar</s:a>
-	                                </td>
-	
-	                                <td>
-	                                    <s:url id="deleteURL" action="deleteFuncionario">
-	                                        <s:param name="id" value="%{id}"></s:param>
-	                                    </s:url>
-	                                    <s:a href="%{deleteURL}">Deletar</s:a>
-	                                </td>
-	                            </tr>
+	                        	<tbody>
+		                            <tr class="odd">
+		                                <td>
+		                                    <s:property value="id" />
+		                                </td>
+		                                <td>
+		                                    <s:property value="nome" />
+		                                </td>
+		                                <td>
+		                                    <s:url id="editURL" action="editFuncionario">
+		                                        <s:param name="id" value="%{id}"></s:param>
+		                                    </s:url>
+		                                    <s:a href="%{editURL}">Editar</s:a>
+		                                </td>
+		
+		                                <td>
+		                                    <s:url id="deleteURL" action="deleteFuncionario">
+		                                        <s:param name="id" value="%{id}"></s:param>
+		                                    </s:url>
+		                                    <s:a href="%{deleteURL}">Deletar</s:a>
+		                                </td>
+		                            </tr>
+								</tbody>
 	                        </s:iterator>
 	                    </table>
-	                </div>
 	            </s:if>
         	</div>
         </body>
