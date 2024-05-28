@@ -1,5 +1,6 @@
 package br.com.soc.service.impl;
 
+import java.io.File;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -88,7 +89,7 @@ public class ExameRealizadoServiceImpl implements ExameRealizadoService {
 	}
 	
 	@Override
-	public void downloadExameRealizado(FiltroExameRealizado filtroExameRealizado) throws SQLException, Exception {
+	public void downloadExameRealizado(FiltroExameRealizado filtroExameRealizado, File fileToDownload) throws SQLException, Exception {
 		getConnection().setAutoCommit(false);
 		List<ExameRealizadoDownload> exameRealizadoDownloads = new LinkedList<>();
 				
@@ -119,7 +120,7 @@ public class ExameRealizadoServiceImpl implements ExameRealizadoService {
 				}
 				// GERAR XLS
 				CriarArquivoExcel criarArquivoExcel = new CriarArquivoExcel();
-				criarArquivoExcel.criarArquivo("D:\\WS-BACKEND\\Struts2\\projeto_struts_crud\\testes.xlsx", exameRealizadoDownloads);
+				criarArquivoExcel.criarArquivo(fileToDownload, exameRealizadoDownloads);
 			}
 		} catch (Exception e) {
 			transaction.rollback();

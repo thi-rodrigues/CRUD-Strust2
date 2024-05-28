@@ -1,5 +1,6 @@
 package br.com.soc.service.impl;
 
+import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
@@ -17,12 +18,12 @@ import lombok.extern.slf4j.Slf4j;
 @Slf4j
 public class CriarArquivoExcel {
 
-	public void criarArquivo(String nomeArquivo, List<ExameRealizadoDownload> exameRealizadoDownloads) {
-		log.info("Gerando o arquivo {}", nomeArquivo);
+	public void criarArquivo(File fileToDownload, List<ExameRealizadoDownload> exameRealizadoDownloads) {
+		log.info("Gerando o arquivo {}", fileToDownload);
 		
 		try {
 			XSSFWorkbook workbook = new XSSFWorkbook();
-			FileOutputStream outputStream = new FileOutputStream(nomeArquivo);
+			FileOutputStream outputStream = new FileOutputStream(fileToDownload);
 			XSSFSheet sheet = workbook.createSheet("Exames Realizados");
 			int numeroDaLinha = 0;
 
@@ -39,10 +40,10 @@ public class CriarArquivoExcel {
 			workbook.write(outputStream);
 		} catch (FileNotFoundException e) {
 			System.out.println(e.getMessage());
-			log.error("Arquivo não encontrado: {}", nomeArquivo);
+			log.error("Arquivo não encontrado: {}", fileToDownload);
 		} catch (IOException e1) {
 			System.out.println(e1.getMessage());
-			log.error("Erro ao processar o arquivo: {} ", nomeArquivo);
+			log.error("Erro ao processar o arquivo: {} ", fileToDownload);
 		}
 		log.info("Arquivo gerado com sucesso!");
 	}

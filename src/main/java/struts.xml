@@ -40,7 +40,12 @@
 				
 <!-- DOWNLOAD EXAME REALIZADO -->
 		<action name="downloadExameRealizado" method="downloadExameRealizado" class="br.com.soc.action.FiltroExameRealizadoAction">
-			<result name="success" type="redirect">listExame</result>
+			<result name="success" type="stream">
+				<param name="contentType">application/octet-stream</param>
+				<param name="inputName">inputStream</param>
+				<param name="contentDisposition">attachment;filename="${fileName}"</param>
+				<param name="bufferSize">4096</param>
+			</result>
 		</action>
 		
 <!-- EXCLUIR EXAME REALIZADO -->

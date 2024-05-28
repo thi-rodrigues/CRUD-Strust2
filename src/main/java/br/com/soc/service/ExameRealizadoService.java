@@ -1,5 +1,6 @@
 package br.com.soc.service;
 
+import java.io.File;
 import java.sql.SQLException;
 
 import br.com.soc.domain.ExameRealizadoKey;
@@ -9,7 +10,7 @@ public interface ExameRealizadoService {
 
 	public void saveExameRealizado(ExameRealizadoKey exameRealizado) throws SQLException, Exception;
 
-	public void downloadExameRealizado(FiltroExameRealizado filtroExameRealizado) throws SQLException, Exception;
+	public void downloadExameRealizado(FiltroExameRealizado filtroExameRealizado, File fileToDownload) throws SQLException, Exception;
 
 	public void deletarExameRealizado(ExameRealizadoKey exameRealizadoKey) throws SQLException, Exception;
 	
