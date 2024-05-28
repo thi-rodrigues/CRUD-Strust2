@@ -6,12 +6,8 @@
 <hibernate-configuration>
   <session-factory>
     <property name="connection.driver_class">com.mysql.cj.jdbc.Driver</property>
-    <!-- property name="connection.driver_class">com.mysql.jdbc.Driver</property -->
     <property name="connection.url">jdbc:mysql://127.0.0.1:3306/avaliacao</property>
     <property name="dialect">org.hibernate.dialect.MySQLDialect</property>
-    <!--
-    <property name="dialect">org.hibernate.dialect.MySQL8Dialect</property>
-    -->
     <property name="connection.username">admin</property>
     <property name="connection.password">R00t@123</property>
     <property name="connection.pool_size">3</property>
@@ -19,6 +15,5 @@
     <property name="show_sql">true</property>
     <property name="format_sql">true</property>
     <property name="hbm2ddl.auto">update</property>
-    <!-- mapping class="com.mcnz.jpa.examples.Player" / -->
   </session-factory>
 </hibernate-configuration>
