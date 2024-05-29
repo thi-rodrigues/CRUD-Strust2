@@ -1,8 +1,8 @@
 @CHARSET "ISO-8859-1";
 
 .content {
-font-family: sans-serif;
-font-size: small;
+	font-family: sans-serif;
+	font-size: small;
 }
 
 
@@ -32,9 +32,9 @@ font-size: small;
 }
 
 .odd {
-background-color: #FFFFF0;
+	background-color: #6d6363;
 }
 
 .even {
-background-color: #FAF0E6;
+background-color: #715858;
 }

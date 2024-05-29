@@ -3,12 +3,11 @@
     <%@taglib prefix="s" uri="/struts-tags" %>
     <%@taglib prefix="sb" uri="/struts-bootstrap-tags" %>
 	<html>
-
         <head>
             <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
             <meta name="viewport" content="width=device-width, initial-scale=1">
             <link href="../style.css" rel="stylesheet" media="screen">
-            <title>Cadastrar Funcionario</title>
+            <title>Funcionários</title>
             <sb:head />
         </head>
 
@@ -16,20 +15,22 @@
         	<script src="https://code.jquery.com/jquery.js"></script>
     		<script src="js/bootstrap.min.js"></script>
     		
-        	<div class="container" style="margin-top: 50px;">
-	            <s:form action="saveOrUpdateFuncionario" enctype="multipart/form-data" theme="bootstrap" cssClass="form-horizontal">
-	                <s:push value="funcionario">
-	                	<s:hidden name="id" />
-	                    <s:textfield name="nome" label="Nome Funcionario" placeholder="Nome" required="true"/>
-	                    <s:submit value="Gravar"/>
-	                </s:push>
-	            </s:form>
-        	<hr>
-			<br>
+        	<div class="container">
+				<ul class="breadcrumb">
+				  <li><s:a href="listExame.action">Exames Realizados</s:a> <span class="divider"></span></li>
+				  <li><s:a href="telaCadastrar.action">Cadastrar Exames</s:a> <span class="divider"></span></li>
+				  <li><s:a href="telaExames.action">Exames</s:a> <span class="divider"></span></li>
+				  <li><s:a href="telaRealizarExames.action">Realizar Exames</s:a> <span class="divider"></span></li>
+				  <li><s:a href="telaRelatorioExames.action">Download Exames</s:a> <span class="divider"></span></li>
+				  <span class="divider">|</span></li>
+				  <li><s:a href="telaCadastrarFuncionario.action">Cadastrar Funcionário</s:a> <span class="divider"></span></li>
+				  <li><s:a href="listFuncionario.action">Funcionários</s:a> <span class="divider"></span></li>
+				</ul>
+				
 	            <s:if test="funcionarioList.size() > 0">
 	            	<table class="table table-striped">
 	                   	<thead>
-	                        <tr">
+	                        <tr>
 	                            <th>Cod.</th>
 	                            <th>Nome</th>
 	                            <th style="text-align: center;">Ação</th>

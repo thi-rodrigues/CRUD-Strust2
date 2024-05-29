@@ -28,6 +28,10 @@ public class FuncionarioAction extends ActionSupport implements ModelDriven<Func
 	public Funcionario getModel() {
 		return funcionario;
 	}
+	
+	public String redirect() {
+		return SUCCESS;
+	}
 
 	public String saveOrUpdate() throws SQLException, Exception {
 		HttpServletRequest request = (HttpServletRequest) ActionContext.getContext()

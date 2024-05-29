@@ -18,8 +18,6 @@
         <body>
         	<script src="https://code.jquery.com/jquery.js"></script>
     		<script src="js/bootstrap.min.js"></script>
-    		
-    		
 	        <div class="container">
 				<ul class="breadcrumb">
 				  <li><s:a href="listExame.action">Exames Realizados</s:a> <span class="divider"></span></li>
@@ -27,6 +25,9 @@
 				  <li><s:a href="telaExames.action">Exames</s:a> <span class="divider"></span></li>
 				  <li><s:a href="telaRealizarExames.action">Realizar Exames</s:a> <span class="divider"></span></li>
 				  <li><s:a href="telaRelatorioExames.action">Download Exames</s:a> <span class="divider"></span></li>
+				  <span class="divider">|</span></li>
+				  <li><s:a href="telaCadastrarFuncionario.action">Cadastrar Funcionário</s:a> <span class="divider"></span></li>
+				  <li><s:a href="listFuncionario.action">Funcionários</s:a> <span class="divider"></span></li>
 				</ul>
 				
 	            <!--  EXAME REALIZADO  -->

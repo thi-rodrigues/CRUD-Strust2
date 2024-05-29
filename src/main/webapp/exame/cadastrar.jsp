@@ -26,13 +26,16 @@
 				  <li><s:a href="telaExames.action">Exames</s:a> <span class="divider"></span></li>
 				  <li><s:a href="telaRealizarExames.action">Realizar Exames</s:a> <span class="divider"></span></li>
 				  <li><s:a href="telaRelatorioExames.action">Download Exames</s:a> <span class="divider"></span></li>
+				  <span class="divider">|</span></li>
+				  <li><s:a href="telaCadastrarFuncionario.action">Cadastrar Funcionário</s:a> <span class="divider"></span></li>
+				  <li><s:a href="listFuncionario.action">Funcionários</s:a> <span class="divider"></span></li>
 				</ul>
 				
 	            <s:form action="saveOrUpdateExame" class="form-horizontal">
 	            	<h4>Novo Exame</h4>
 	                <s:push value="exame">
 	                    <s:hidden name="id" />
-	                    <s:textfield name="nome" label="Nome Exame" required="true"/>
+	                    <s:textfield name="nome" label="Nome Exame" required="true" style="color: black" placeholder="Nome"/>
 	                    <s:radio id="ativo" name="ativo" title="Ativo"   list="#{ '1' : 'Ativo'}" required="true" />
 						<s:radio id="ativo" name="ativo" title="Inativo" list="#{ '0' : 'Inativo'}" required="true" />
 	                    <s:submit value="Gravar"/>

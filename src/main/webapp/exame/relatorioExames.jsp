@@ -3,7 +3,6 @@
     <%@taglib prefix="s" uri="/struts-tags" %>
     <%@taglib prefix="sb" uri="/struts-bootstrap-tags" %>
        <html>
-
         <head>
             <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
             <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -19,7 +18,6 @@
         	<script src="https://code.jquery.com/jquery.js"></script>
     		<script src="js/bootstrap.min.js"></script>
     		
-    		
 	        <div class="container">
 				<ul class="breadcrumb">
 				  <li><s:a href="listExame.action">Exames Realizados</s:a> <span class="divider"></span></li>
@@ -27,13 +25,16 @@
 				  <li><s:a href="telaExames.action">Exames</s:a> <span class="divider"></span></li>
 				  <li><s:a href="telaRealizarExames.action">Realizar Exames</s:a> <span class="divider"></span></li>
 				  <li><s:a href="telaRelatorioExames.action">Download Exames</s:a> <span class="divider"></span></li>
+				  <span class="divider">|</span></li>
+				  <li><s:a href="telaCadastrarFuncionario.action">Cadastrar Funcionário</s:a> <span class="divider"></span></li>
+				  <li><s:a href="listFuncionario.action">Funcionários</s:a> <span class="divider"></span></li>
 				</ul>
 				
 				<h4>Relatório de Exames</h4>
 	        	<s:form action="downloadExameRealizado" class="form-horizontal" >
 	                <s:push value="exameRealizadoKey">
-		                <s:textfield name="dtInicial" type="date" class="input-small" label="Data Inicial" required="true" />
-		                <s:textfield name="dtFinal" type="date" class="input-small" label="Data Final" required="true" />
+		                <s:textfield name="dtInicial" type="date" class="input-small" label="Data Inicial" required="true" style="color: white"/>
+		                <s:textfield name="dtFinal" type="date" class="input-small" label="Data Final" required="true" style="color: white"/>
 	                    <s:submit value="Download"/>
 	                </s:push>
 	            </s:form>

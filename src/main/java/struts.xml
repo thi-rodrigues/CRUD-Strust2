@@ -5,6 +5,10 @@
 <struts>
 	<package name="default" extends="hibernate-default">
 <!-- FUNCIONARIO -->
+		<action name="telaCadastrarFuncionario" method="redirect" class="br.com.soc.action.FuncionarioAction">
+			<result name="success">/funcionario/cadastrar.jsp</result>
+		</action>
+		
 		<action name="saveOrUpdateFuncionario" method="saveOrUpdate" class="br.com.soc.action.FuncionarioAction">
 			<result name="success" type="redirect">listFuncionario</result>
 		</action>

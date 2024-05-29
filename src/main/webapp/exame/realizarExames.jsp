@@ -12,6 +12,7 @@
             <sb:head />
             <style type="text/css">
                 @import url(style.css);
+                body {color: #000000;}
             </style>
         </head>
 
@@ -27,16 +28,19 @@
 				  <li><s:a href="telaExames.action">Exames</s:a> <span class="divider"></span></li>
 				  <li><s:a href="telaRealizarExames.action">Realizar Exames</s:a> <span class="divider"></span></li>
 				  <li><s:a href="telaRelatorioExames.action">Download Exames</s:a> <span class="divider"></span></li>
+				  <span class="divider">|</span></li>
+				  <li><s:a href="telaCadastrarFuncionario.action">Cadastrar Funcionário</s:a> <span class="divider"></span></li>
+				  <li><s:a href="listFuncionario.action">Funcionários</s:a> <span class="divider"></span></li>
 				</ul>
 				
-					        	<s:form action="saveRealizarExame" class="form-horizontal">
+				<s:form action="saveRealizarExame" class="form-horizontal">
 	                <s:push value="exameRealizadoKey">
 	                	<h4>Realizar Exame</h4>
 						
-						<s:select label="Exame" headerKey="0" list="exameList" listValue="%{nome}" 
+						<s:select label="Exame" headerKey="0" list="exameList" listValue="%{nome}" style="color: white"
 							listKey="id" name="exameId" />
 							
-						<s:select label="Funcionário" headerKey="0" list="funcionarioList" listValue="%{nome}" 
+						<s:select label="Funcionário" headerKey="0" list="funcionarioList" listValue="%{nome}" style="color: white" 
 							listKey="id" name="funcionarioId" />
 							
 	                   <s:submit value="Gravar"/>
