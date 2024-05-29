@@ -36,7 +36,7 @@ public class ExameServiceImpl implements ExameService {
 		getConnection().setAutoCommit(false);
 		List<Exame> exames = new LinkedList<>();
 		try {
-			String sql = "SELECT * FROM EXAME WHERE IC_ATIVO = 1 ORDER BY NM_EXAME LIMIT 5 ";
+			String sql = "SELECT * FROM EXAME WHERE IC_ATIVO = 1 ORDER BY NM_EXAME LIMIT 20 ";
 			PreparedStatement ps = getConnection().prepareStatement(sql);
 			ResultSet rs = ps.executeQuery();
 

@@ -50,6 +50,10 @@ public class ExameAction extends ActionSupport implements ModelDriven<Exame> {
 	public Exame getModel() {
 		return exame;
 	}
+	
+	public String redirect() {
+		return SUCCESS;
+	}
 
 	public String saveOrUpdate() throws SQLException, Exception {
 		HttpServletRequest request = (HttpServletRequest) ActionContext.getContext()
